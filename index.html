@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loom &amp; Co</title>
+<style>
+:root{--ink:#000;--paper:#fff;--mut:#6e6e6e;--line:#dcdcdc;--soft:#f5f5f5;--serif:Georgia,'Times New Roman',serif;--sans:'Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+header{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:12px 20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:18px;letter-spacing:4px}
+#q{flex:1 1 100%;order:3;border:1px solid var(--line);padding:10px 14px;border-radius:2px;background:var(--paper)}
+.btn{background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:10px 18px;border-radius:2px;cursor:pointer;margin-left:auto}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.hero{max-width:1100px;margin:0 auto;padding:48px 20px 24px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,6vw,56px);line-height:1.1;max-width:14em}
+.hero p{color:var(--mut);margin-top:14px;max-width:32em}
+#cats{max-width:1100px;margin:0 auto;padding:8px 20px;display:flex;gap:26px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+#cats button{background:none;border:0;border-bottom:2px solid transparent;font-family:var(--serif);font-size:19px;padding:10px 0;color:var(--mut);cursor:pointer;white-space:nowrap}
+#cats button.on{color:var(--ink);border-color:var(--ink)}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 14px}
+.card{cursor:pointer;background:none;border:0;text-align:left;padding:0}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--soft);display:block}
+.card h3{font-family:var(--serif);font-weight:400;font-size:17px;margin-top:10px}
+.card span{color:var(--mut);font-size:14px;display:block}
+.card b{font-weight:500;font-size:15px}
+#empty{text-align:center;padding:60px 0;color:var(--mut)}
+#empty button{margin-top:16px}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--mut);font-size:14px}
+dialog{border:0;border-radius:2px;padding:0;width:min(94vw,520px);max-height:92vh;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.in{padding:22px;display:grid;gap:12px}
+.in h2{font-family:var(--serif);font-weight:400;font-size:24px}
+label{display:grid;gap:4px;font-size:14px;color:var(--mut)}
+label input,label select,label textarea{border:1px solid var(--line);padding:10px;border-radius:2px;background:var(--paper)}
+.row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+#prev,#vimg,#rimg,#sprev{width:100%;max-height:340px;object-fit:cover;background:var(--soft)}
+.price{font-size:22px;font-family:var(--serif)}
+.box{background:var(--soft);padding:14px;border-radius:2px}.box b{font-size:20px;letter-spacing:1px}
+@media(min-width:700px){#grid{grid-template-columns:repeat(3,1fr);gap:30px 20px}#q{flex:0 1 320px;order:0;margin-left:auto}.btn{margin-left:0}}
+@media(min-width:1000px){#grid{grid-template-columns:repeat(4,1fr)}header{padding:14px 40px}}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="#"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor"/><circle cx="20" cy="20" r="15.5" fill="none" stroke="currentColor" stroke-width=".5"/><text x="20" y="25" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="currentColor">L</text></svg>LOOM &amp; CO</a>
+<input id="q" type="search" placeholder="Kiyim qidirish" aria-label="Qidirish">
+<button class="btn" id="sellBtn">E'lon joylash</button>
+</header>
+<section class="hero">
+<h1>Kiyimingizni soting. Yangisini toping.</h1>
+<p>Foydalanuvchilar o'z kiyimlarini bevosita bir-biriga sotadi. Tanlang, sotuvchi bilan gaplashing, kelishing.</p>
+</section>
+<nav id="cats" aria-label="Bo'limlar"></nav>
+<main>
+<div id="grid"></div>
+<div id="empty" hidden><p>Bu bo'limda hozircha e'lon yo'q.</p><button class="btn" id="sellBtn2">Birinchi e'lonni joylash</button></div>
+</main>
+<footer>© 2026 Loom &amp; Co</footer>
+
+<dialog id="sell">
+<form id="f" class="in">
+<h2>Yangi e'lon</h2>
+<label>Rasm<input type="file" id="file" accept="image/*" required></label>
+<img id="prev" alt="Tanlangan rasm" hidden>
+<label>Nomi<input name="name" required maxlength="60" placeholder="Masalan: Charm tufli, 42-o'lcham"></label>
+<label>Bo'lim<select name="cat" id="catSel"></select></label>
+<label>Narxi (so'm)<input name="price" type="number" min="0" required></label>
+<label>Tavsif<textarea name="desc" rows="3" maxlength="400" placeholder="Holati, o'lchami, rangi"></textarea></label>
+<label>Ismingiz<input name="seller" required maxlength="40"></label>
+<label>Telefon raqamingiz<input name="phone" type="tel" required placeholder="+998 90 123 45 67"></label>
+<div class="row"><button type="button" class="btn alt" id="cancel">Bekor qilish</button><button class="btn">Davom etish</button></div>
+</form>
+</dialog>
+
+<dialog id="reg">
+<form id="rf" class="in">
+<h2>Do'kon ma'lumotlari</h2>
+<p style="color:var(--mut);font-size:14px">Kiyim do'koningiz bo'lsa, ma'lumotlarni kiriting. Faqat xarid qilmoqchi bo'lsangiz, o'tkazib yuboring.</p>
+<label>Do'kon rasmi<input type="file" id="sfile" accept="image/*" required></label>
+<img id="sprev" alt="Do'kon rasmi" hidden>
+<label>Do'kon nomi<input name="sname" required maxlength="60"></label>
+<label>Manzil<input name="addr" required maxlength="120" placeholder="Shahar, tuman, ko'cha, mo'ljal"></label>
+<label>Email<input name="email" type="email" required placeholder="nom@gmail.com"></label>
+<div class="row"><button type="button" class="btn alt" id="skip">O'tkazib yuborish</button><button class="btn">Saqlash</button></div>
+</form>
+</dialog>
+
+<dialog id="pay">
+<form id="pf" class="in">
+<h2>To'lov</h2>
+<p>E'lon joylash narxi: <b id="fee"></b></p>
+<div class="box">Karta raqami<br><b id="cardno"></b><br><span id="cname"></span></div>
+<p style="color:var(--mut);font-size:14px">Shu kartaga pul o'tkazing va chek rasmini yuklang. To'lov tekshirilgach e'lon saytda chiqadi.</p>
+<label>Chek rasmi<input type="file" id="rfile" accept="image/*" required></label>
+<div class="row"><button type="button" class="btn alt" id="pcancel">Orqaga</button><button class="btn">Yuborish</button></div>
+</form>
+</dialog>
+
+<dialog id="view">
+<div class="in">
+<img id="vimg" alt=""><img id="rimg" alt="Chek" hidden>
+<h2 id="vname"></h2>
+<p class="price" id="vprice"></p>
+<p id="vmeta" style="color:var(--mut);font-size:14px"></p>
+<p id="vdesc"></p>
+<div class="row"><button class="btn" id="ok" hidden>Tasdiqlash</button><button class="btn alt" id="del" hidden>O'chirish</button><button class="btn alt" id="close">Yopish</button><a class="btn" id="call" style="text-decoration:none">Sotuvchiga qo'ng'iroq</a></div>
+</div>
+</dialog>
+
+<script>
+const FEE=4990,CARD='5614 6827 6011 1254',CARD_NAME='M SH',ADMIN_PASS='parolni-ozgartiring';
+const KEY='loom_items',CATS=["Oyoq kiyim","Kostyum","Shim","Ko'ylak","Kurtka","Aksessuar"];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const admin=location.hash==='#admin'&&prompt('Admin paroli')===ADMIN_PASS;
+let items=load(),cat='Hammasi',q='',img='',openId=null;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(items));return true}catch(e){alert("Xotira to'ldi. Eski e'lonlarni o'chiring yoki kichikroq rasm tanlang.");return false}}
+function money(n){return Number(n).toLocaleString('ru-RU')+" so'm"}
+function render(){
+$('cats').innerHTML=['Hammasi',...CATS].map(c=>`<button class="${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('');
+const t=q.trim().toLowerCase();
+const list=items.filter(i=>(i.status!=='pending'||admin||i.mine)&&(cat==='Hammasi'||i.cat===cat)&&(!t||(i.name+' '+i.desc).toLowerCase().includes(t)));
+$('grid').innerHTML=list.map(i=>`<button class="card" data-id="${i.id}"><img src="${i.img}" alt="${esc(i.name)}" loading="lazy"><h3>${esc(i.name)}</h3><b>${money(i.price)}</b><span>${esc(i.cat)}${i.status==='pending'?' · tasdiq kutilmoqda':''}</span></button>`).join('');
+$('empty').hidden=list.length>0;
+}
+function shrink(file){return new Promise((ok,no)=>{const r=new FileReader();r.onerror=no;r.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const m=800,s=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.8))};im.src=r.result};r.readAsDataURL(file)})}
+function loadShop(){try{return JSON.parse(localStorage.getItem('loom_shop'))}catch(e){return null}}
+let shop=loadShop(),simg='';
+function openSell(){if(!shop||shop.skip){$('reg').showModal();return}
+if(!$('f').seller.value)$('f').seller.value=shop.sname;$('sell').showModal()}
+$('sfile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{simg=await shrink(f);$('sprev').src=simg;$('sprev').hidden=false}catch(x){simg='';alert("Rasmni o'qib bo'lmadi. Boshqa rasm tanlang.")}};
+$('skip').onclick=()=>{if(!shop){shop={skip:true};try{localStorage.setItem('loom_shop',JSON.stringify(shop))}catch(e){}}$('reg').close()};
+$('rf').onsubmit=e=>{e.preventDefault();if(!simg){alert('Do\'kon rasmini tanlang.');return}
+const d=new FormData(e.target);
+shop={sname:d.get('sname'),addr:d.get('addr'),email:d.get('email'),img:simg};
+try{localStorage.setItem('loom_shop',JSON.stringify(shop))}catch(x){alert("Xotira to'ldi. Kichikroq rasm tanlang.");shop=null;return}
+$('reg').close();$('sell').showModal();$('f').seller.value=shop.sname};
+if(!shop)$('reg').showModal();
+$('catSel').innerHTML=CATS.map(c=>`<option>${esc(c)}</option>`).join('');
+$('sellBtn').onclick=openSell;$('sellBtn2').onclick=openSell;
+$('cancel').onclick=()=>$('sell').close();
+$('close').onclick=()=>$('view').close();
+$('q').oninput=e=>{q=e.target.value;render()};
+$('cats').onclick=e=>{const b=e.target.closest('button');if(b){cat=b.dataset.c;render()}};
+$('file').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{img=await shrink(f);$('prev').src=img;$('prev').hidden=false}catch(x){img='';alert("Rasmni o'qib bo'lmadi. Boshqa rasm tanlang.")}};
+$('cardno').textContent=CARD;$('cname').textContent=CARD_NAME;$('fee').textContent=money(FEE);
+let draft=null,rec='';
+$('f').onsubmit=e=>{e.preventDefault();if(!img){alert('Rasm tanlang.');return}
+const d=new FormData(e.target);
+draft={id:Date.now(),name:d.get('name'),cat:d.get('cat'),price:+d.get('price'),desc:d.get('desc'),seller:d.get('seller'),phone:d.get('phone'),addr:shop.addr,img,mine:true,status:'pending'};
+$('sell').close();$('pay').showModal()};
+$('rfile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{rec=await shrink(f)}catch(x){rec='';alert("Chekni o'qib bo'lmadi. Boshqa rasm tanlang.")}};
+$('pcancel').onclick=()=>{$('pay').close();$('sell').showModal()};
+$('pf').onsubmit=e=>{e.preventDefault();if(!rec){alert('Chek rasmini tanlang.');return}
+draft.receipt=rec;items.unshift(draft);
+if(!save()){items.shift();return}
+$('f').reset();$('pf').reset();img='';rec='';draft=null;$('prev').hidden=true;$('pay').close();cat='Hammasi';render();
+alert("E'lon yuborildi. To'lov tekshirilgach saytda hammaga ko'rinadi.")};
+$('grid').onclick=e=>{const b=e.target.closest('.card');if(!b)return;const i=items.find(x=>x.id==b.dataset.id);if(!i)return;openId=i.id;
+$('vimg').src=i.img;$('vimg').alt=i.name;$('vname').textContent=i.name;$('vprice').textContent=money(i.price);
+$('vmeta').textContent=i.cat+', sotuvchi: '+i.seller+(i.addr?', manzil: '+i.addr:'');$('vdesc').textContent=i.desc;
+$('call').href='tel:'+i.phone.replace(/[^+\d]/g,'');$('del').hidden=!i.mine&&!admin;$('rimg').hidden=!(admin&&i.receipt);if(admin&&i.receipt)$('rimg').src=i.receipt;$('ok').hidden=!(admin&&i.status==='pending');$('view').showModal()};
+$('ok').onclick=()=>{const i=items.find(x=>x.id==openId);if(i){i.status='approved';save()}$('view').close();render()};
+$('del').onclick=()=>{if(confirm("E'lonni o'chirasizmi?")){items=items.filter(x=>x.id!==openId);save();$('view').close();render()}};
+render();
+</script>
+</body>
+</html>
