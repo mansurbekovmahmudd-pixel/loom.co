@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LOOM & CO — kiyim do'koni</title>
+<style>
+:root{--bg:#f2f5fc;--ink:#0b1030;--card:#fff;--line:#dfe5f3;--mut:#5b6483;--brand:#3a4bff;--hot:#ff5a1f;--tile:#e7ebfa;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0e22;--ink:#eef1ff;--card:#121835;--line:#232b52;--mut:#98a2c8;--brand:#6b79ff;--tile:#1a2147}}
+:root[data-theme="dark"]{--bg:#0a0e22;--ink:#eef1ff;--card:#121835;--line:#232b52;--mut:#98a2c8;--brand:#6b79ff;--tile:#1a2147}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:110px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;height:62px}
+.logo{font:800 24px/1 Georgia,"Times New Roman",serif;letter-spacing:.14em;margin-right:auto}
+.pill{display:flex;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--card)}
+.pill button{padding:5px 13px;border-radius:99px;font-weight:700;font-size:14px;color:var(--mut)}
+.pill button.on{background:var(--brand);color:#fff}
+.ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--card)}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.srch{display:flex;gap:10px;padding:10px 0 14px}
+.srch input{flex:1;min-width:0;height:48px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 16px;font:inherit}
+.srch .ic{width:48px;height:48px;border-radius:16px;position:relative}
+.srch b{position:absolute;top:-4px;right:-4px;background:var(--hot);color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:none;place-items:center}
+.hero{margin-top:14px;border-radius:30px;background:var(--brand);color:#fff;display:grid;gap:10px;padding:34px 24px 26px;overflow:hidden;position:relative;--shirt:#fff}
+.hero:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.12);right:-120px;bottom:-140px}
+.hero h1{font:800 clamp(38px,9vw,72px)/1.02 Georgia,"Times New Roman",serif;margin:0;letter-spacing:-.01em}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2) i{animation-delay:.12s}.hero h1 span:nth-child(3) i{animation-delay:.24s}
+@keyframes up{from{transform:translateY(105%)}}
+.hero p{max-width:30ch;margin:0;opacity:.92}
+.cta{justify-self:start;background:#fff;color:#1a2147;font-weight:800;padding:14px 26px;border-radius:99px;margin-top:6px;transition:transform .2s}
+.cta:active{transform:scale(.94)}
+.stage{position:relative;justify-self:center;width:min(300px,78vw);z-index:1}
+.stage svg{width:100%;display:block;overflow:visible}
+.sway{transform-origin:150px 12px;animation:sway 3.6s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+.sh{fill:var(--shirt);transition:fill .5s}
+.sw{display:flex;gap:10px;justify-content:center;margin-top:6px;align-items:center;font-size:13px}
+.sw button{width:30px;height:30px;border-radius:50%;border:3px solid rgba(255,255,255,.55);transition:transform .2s}
+.sw button.on{border-color:#fff;transform:scale(1.2)}
+@media(min-width:760px){.hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:56px 56px 40px}.hero .txt{display:grid;gap:14px}}
+.tick{overflow:hidden;margin:26px 0;border-block:1px solid var(--line);padding:12px 0}
+.tick div{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;font:italic 700 22px Georgia,serif;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+h2{font:800 clamp(30px,6vw,46px)/1.1 Georgia,serif;margin:44px 0 18px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.tile{background:var(--tile);aspect-ratio:1;display:grid;place-items:center;position:relative}
+.tile svg{width:68%;transition:transform .3s}.pc:hover .tile svg{transform:rotate(-4deg) scale(1.06)}
+.bd{position:absolute;left:10px;top:10px;background:var(--hot);color:#fff;font-weight:800;font-size:14px;padding:4px 11px;border-radius:99px}
+.hb{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.7);display:grid;place-items:center;color:#0b1030}
+.hb.on{color:#fff;background:var(--hot)}.hb.on svg{fill:currentColor;animation:pop .35s}
+@keyframes pop{50%{transform:scale(1.5)}}
+.pi{padding:12px 14px 14px;display:grid;gap:4px;flex:1;align-content:start}
+.pi b{font-size:15px;line-height:1.3}.pr{font-weight:800;font-size:18px}.pr s{font-weight:500;font-size:13px;color:var(--mut);margin-left:6px}
+.add{margin-top:8px;background:var(--brand);color:#fff;font-weight:700;padding:11px;border-radius:14px;transition:transform .15s}
+.add:active{transform:scale(.95)}.add.ok{background:#14a86a}
+.empty{grid-column:1/-1;color:var(--mut);padding:30px 0}
+.cats{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;margin:0 -18px;padding-inline:18px;scrollbar-width:none}
+.cat{flex:0 0 min(78%,320px);scroll-snap-align:start;height:210px;border-radius:26px;color:#fff;display:flex;align-items:center;justify-content:center;padding:22px;font:800 30px/1 Georgia,serif;position:relative;overflow:hidden;text-align:center}
+.cat:before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.1);right:-50px;top:-60px;transition:transform .5s}
+.cat:hover:before{transform:scale(1.5)}.cat span{position:relative}
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:760px){.why{grid-template-columns:repeat(4,1fr)}}
+.wc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;display:grid;gap:8px;align-content:start}
+.wc .ic{background:var(--tile);color:var(--brand);border:0;border-radius:14px;width:52px;height:52px}
+.wc b{font-size:18px;line-height:1.2}.wc span{color:var(--mut);font-size:15px}
+footer{background:#0a1220;color:#dfe6ff;margin-top:56px;padding:44px 0 30px}
+footer h3{font:800 clamp(24px,5vw,34px)/1.15 Georgia,serif;margin:0 0 8px}
+footer p{color:#9fabd0;margin:0 0 18px}
+.nl{display:flex;gap:10px;flex-wrap:wrap;max-width:520px}
+.nl input{flex:1;min-width:180px;height:50px;border-radius:99px;border:1px solid #2b3555;background:transparent;color:#fff;padding:0 20px;font:inherit}
+.nl button{background:var(--brand);color:#fff;font-weight:700;padding:0 24px;height:50px;border-radius:12px}
+.fl{display:flex;flex-wrap:wrap;gap:8px 24px;margin:34px 0 22px;font-size:18px}
+.cp{border-top:1px solid #1d2744;padding-top:20px;color:#7f8bb0;font-size:14px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom,0px));pointer-events:none}
+nav div{pointer-events:auto;display:flex;justify-content:space-between;width:min(560px,100%);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:9px 14px;box-shadow:0 10px 30px rgba(10,16,48,.18)}
+nav button{display:grid;justify-items:center;gap:1px;font-size:11px;color:var(--mut);position:relative;min-width:56px;transition:color .2s}
+nav button.on{color:var(--brand);font-weight:700}
+nav i{position:absolute;top:-4px;right:8px;background:var(--hot);color:#fff;font:700 10px/16px system-ui;min-width:16px;border-radius:8px;text-align:center;font-style:normal;display:none}
+.bump{animation:pop .4s}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:99px;font-weight:600;opacity:0;transition:.3s;z-index:40;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.md{position:fixed;inset:0;background:rgba(5,8,25,.55);z-index:50;display:flex;align-items:flex-end;justify-content:center}.md[hidden]{display:none}
+.sh2{background:var(--card);width:min(560px,100%);max-height:92%;overflow:auto;border-radius:28px 28px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom,0px));animation:sl .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes sl{from{transform:translateY(100%)}}
+@media(min-width:760px){.md{align-items:center}.sh2{border-radius:28px}}
+.sh2 h3{font:800 28px/1.1 Georgia,serif;margin:0 0 6px}.sh2 p{color:var(--mut);margin:0 0 16px}
+.fd{display:grid;gap:6px;margin-bottom:12px;font-weight:600;font-size:14px}
+.fd input,.fd select,.fd textarea{font:inherit;font-weight:400;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;width:100%}
+.fd textarea{min-height:84px;resize:vertical}.fp{max-height:120px;border-radius:12px;display:none;justify-self:start}
+.rw{display:flex;gap:10px;margin-top:16px}.rw button{flex:1;padding:14px;border-radius:14px;font-weight:700}
+.b1{background:var(--brand);color:#fff}.b2{background:var(--tile)}
+.st{display:flex;gap:6px;margin-bottom:14px}.st i{flex:1;height:5px;border-radius:3px;background:var(--line)}.st i.on{background:var(--brand)}
+.pm{display:flex;gap:12px;align-items:center;border:2px solid var(--brand);border-radius:16px;padding:12px 14px;margin-bottom:12px}
+.pm .ic{background:var(--tile);color:var(--brand);border:0}.pm small{color:var(--mut)}
+.am{display:flex;justify-content:space-between;font-weight:800;font-size:20px;margin:10px 0}
+.cd{background:linear-gradient(135deg,#3a4bff,#7b3aff);color:#fff;border-radius:20px;padding:18px;display:grid;gap:6px;margin-bottom:12px}
+.cd b{font:700 23px/1.2 ui-monospace,Menlo,monospace;letter-spacing:.05em}
+.cd button{justify-self:start;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:99px;font-weight:700;color:#fff}
+.done{text-align:center;display:grid;gap:10px;justify-items:center}
+.done svg{width:90px;height:90px;stroke:#14a86a;fill:none;stroke-width:4;stroke-linecap:round}
+.done circle{stroke-dasharray:260;stroke-dashoffset:260;animation:dr .8s .1s forwards}.done path{stroke-dasharray:60;stroke-dashoffset:60;animation:dr .5s .7s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.tg{display:block;text-align:center;background:#229ed9;color:#fff;padding:14px;border-radius:14px;font-weight:700;text-decoration:none;width:100%}
+.ma{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:10px;margin-bottom:10px}
+.ma img{width:56px;height:56px;border-radius:12px;object-fit:cover;background:var(--tile)}
+.ma em{margin-left:auto;font-style:normal;background:#ffb02033;color:#b86e00;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:700}
+nav .pp{width:48px;height:48px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;margin-top:-26px;box-shadow:0 6px 16px rgba(58,75,255,.45)}
+a.add{display:block;text-align:center;text-decoration:none}.pi small{color:var(--mut)}
+.fl button{font-size:18px;color:inherit}.tile img.ph{width:100%;height:100%;object-fit:cover}
+.cn{position:absolute;width:62px;height:62px;transition:transform .4s}.cn svg{width:100%;height:100%}
+.cn.a{top:12px;left:12px;transform:rotate(-14deg)}.cn.b{top:12px;right:12px;transform:rotate(14deg)}.cn.c{bottom:12px;left:12px;transform:rotate(10deg)}.cn.d{bottom:12px;right:12px;transform:rotate(-10deg)}
+.cat:hover .cn{transform:scale(1.15) rotate(0)}
+.me{display:flex;align-items:center;gap:14px;margin-bottom:16px}.me i{width:56px;height:56px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font:800 24px Georgia,serif;font-style:normal}
+.lb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:14px;font-weight:700;border:1px solid var(--line);background:var(--bg);margin-bottom:10px}
+.lb b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 15px Georgia,serif}
+.note{background:var(--tile);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--mut)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="bar"><div class="logo">LOOM &amp; CO</div>
+<div class="pill" id="lg"><button data-l="uz" class="on">UZ</button><button data-l="ru">RU</button></div>
+<button class="ic" id="th" aria-label="Theme"><svg class="i" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg></button></div>
+<div class="srch"><input id="q" data-ph="search" type="search"><button class="ic" aria-label="Favorites"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 018-2.7A4.5 4.5 0 0120 9c0 6-8 11-8 11z"/></svg><b id="fc"></b></button><button class="ic" data-post aria-label="Post"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button></div>
+</div></header>
+
+<main class="wrap" id="top">
+<section class="hero">
+<div class="txt"><h1><span><i data-t="h1">Shkafingiz</i></span><span><i data-t="h2">yangilanishga</i></span><span><i data-t="h3">tayyor.</i></span></h1>
+<p data-t="sub">Original kiyimlar. O'zbekiston bo'ylab 1 kunda yetkazamiz.</p>
+<button class="cta" data-post data-t="cta">E'lon joylash</button></div>
+<div class="stage"><svg viewBox="0 0 300 330" aria-hidden="true"><g class="sway">
+<path d="M150 70V44a14 14 0 10-14-14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+<path d="M150 70L28 132h244z" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+<path class="sh" stroke="#0b1030" stroke-width="3" stroke-linejoin="round" d="M92 132L44 160 22 222l42 16 12-26v110h148V212l12 26 42-16-22-62-48-28c-10 22-46 22-56 0z" transform="translate(0 0) scale(1) translate(0 -12)"/>
+<rect x="170" y="196" width="34" height="38" rx="5" fill="none" stroke="#0b1030" stroke-opacity=".4" stroke-width="2.5"/></g></svg>
+<div class="sw" id="sw"><span data-t="color">Rangni tanlang</span></div></div>
+</section>
+
+<div class="tick" aria-hidden="true"><div id="tk"></div></div>
+
+<section id="shop"><h2 data-t="best">E'lonlar</h2><div class="grid" id="gr"></div></section>
+<section id="cats"><h2 data-t="cats">Kategoriyalar</h2><div class="cats" id="ct"></div></section>
+<section id="why"><h2 data-t="why">Nega aynan biz</h2><div class="why" id="wy"></div></section>
+</main>
+
+<footer id="sub"><div class="wrap">
+<h3 data-t="nt">Chegirmalardan birinchi bo'lib xabar toping</h3>
+<p data-t="np">Obuna bo'ling va yangi kolleksiyalar, aksiyalar haqida biling.</p>
+<form class="nl" id="nf"><input type="email" required placeholder="email@example.com"><button data-t="nb">Obuna bo'lish</button></form>
+<div class="fl"><button data-prof data-t="f1">Mening e'lonlarim</button><button data-post data-t="f2">E'lon joylash</button><button data-terms data-t="f3">Shartlar</button></div>
+<div class="cp">© 2026 LOOM &amp; CO — <span data-t="cp">O'zbekiston. Barcha huquqlar himoyalangan.</span></div>
+</div></footer>
+
+<div class="md" id="md" hidden><div class="sh2" id="mb"></div></div>
+<nav><div id="nv"></div></nav>
+<div id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const CFG=window.CFG||{firebase:{apiKey:""},admins:[],tg:""};const PRICE=4990,CARD="5614 6827 6011 1254",HOLDER="SH M",TG=CFG.tg||"";
+const D={uz:{search:"E'lon qidirish...",h1:"Shkafingiz",h2:"yangilanishga",h3:"tayyor.",sub:"Foydalanuvchilar o'z kiyimlarini bevosita bir-biriga sotadi. Tanlang, gaplashing, kelishing.",cta:"E'lon joylash",color:"Rangni tanlang",best:"E'lonlar",cats:"Kategoriyalar",why:"Nega aynan biz",nt:"Chegirma va yangi e'lonlardan xabardor bo'ling",np:"Obuna bo'ling va yangiliklarni birinchi bo'lib biling.",nb:"Obuna bo'lish",f1:"Mening e'lonlarim",f2:"E'lon joylash",f3:"Shartlar",cp:"O'zbekiston. Barcha huquqlar himoyalangan.",cur:"so'm",none:"Hozircha e'lonlar yo'q. Sotuvchilar joylagach, shu yerda chiqadi.",ok:"Rahmat! Obuna qabul qilindi.",
+tk:["E'lon joylash atigi 4990 so'm","Sotuvchi bilan to'g'ridan-to'g'ri","Tanlang. Gaplashing. Kelishing.","Kiyimingizni soting"],
+nav:["Bosh sahifa","E'lonlar","E'lon","Kategoriya","Profil"],
+w:[["Oson e'lon","Rasm, narx va telefonni kiriting, e'loningiz tayyor"],["To'g'ridan-to'g'ri aloqa","Sotuvchi bilan gaplashing va kelishing"],["Tekshirilgan e'lonlar","To'lov tekshirilgach e'lon saytda chiqadi"],["Qulay to'lov","E'lon narxi atigi 4990 so'm, karta orqali"]],
+c:{shirt:"Ko'ylaklar",tee:"Futbolkalar",shoes:"Krossovkalar",watch:"Soatlar",pants:"Shimlar",acc:"Aksessuarlar"},
+m1t:"Yangi e'lon",photo:"Rasm",name:"Nomi",section:"Bo'lim",price:"Narxi (so'm)",desc:"Tavsif",yname:"Ismingiz",phone:"Telefon raqamingiz",cancel:"Bekor qilish",next:"Davom etish",
+m2t:"Do'kon ma'lumotlari",m2d:"Kiyim do'koningiz bo'lsa, ma'lumotlarni kiriting. Faqat xarid qilmoqchi bo'lsangiz, o'tkazib yuboring.",simg:"Do'kon rasmi",sname:"Do'kon nomi",addr:"Manzil",email:"Email",skip:"O'tkazib yuborish",save:"Saqlash",
+m3t:"To'lov",pm:"To'lov usulini tanlang",pmcard:"Karta orqali o'tkazma",pmsub:"Plastik kartaga pul o'tkazing",amt:"E'lon joylash narxi",cardno:"Karta raqami",holder:"Karta egasi",copy:"Raqamni nusxalash",copied:"Karta raqami nusxalandi",
+pnote:"Shu kartaga pul o'tkazing va chek rasmini yuklang. To'lov tekshirilgach e'lon saytda chiqadi.",rc:"Chek rasmi",back:"Orqaga",send:"Yuborish",
+dt:"E'lon yuborildi",dd:"To'lov tekshirilgach e'loningiz saytda chiqadi.",tgb:"Telegramda yuborish",close:"Yopish",myads:"Mening e'lonlarim",st:"Tekshiruvda",noads:"Hali e'lon yubormagansiz.",call:"Sotuvchiga qo'ng'iroq",
+lgt:"Profilga kirish",lgd:"Kirish uchun hisobingizni tanlang.",gb:"Google bilan davom etish",fbb:"Facebook bilan davom etish",lgoff:"Kirish hozircha ulanmagan: config.js ga Firebase kalitlari kerak.",lgerr:"Kirib bo'lmadi. Keyinroq urinib ko'ring.",out:"Chiqish",needlogin:"E'lon joylash uchun avval profilingizga kiring.",sa:"Tasdiqlangan",sr:"Rad etilgan",tt:"Shartlar",tl:["E'lon joylash narxi: "+PRICE+" so'm.","To'lov kartaga o'tkazma orqali qilinadi, chek rasmi yuklanadi.","To'lov tekshirilgach e'lon saytda chiqadi.","Kiyim narxi va yetkazib berish sotuvchi bilan kelishiladi."]},
+ru:{search:"Поиск объявлений...",h1:"Гардероб",h2:"готов к",h3:"обновлению.",sub:"Пользователи продают одежду напрямую друг другу. Выбирайте, общайтесь, договаривайтесь.",cta:"Подать объявление",color:"Выберите цвет",best:"Объявления",cats:"Категории",why:"Почему мы",nt:"Узнавайте о скидках и новых объявлениях",np:"Подпишитесь и узнавайте новости первыми.",nb:"Подписаться",f1:"Мои объявления",f2:"Подать объявление",f3:"Условия",cp:"Узбекистан. Все права защищены.",cur:"сум",none:"Пока нет объявлений. Они появятся здесь, когда продавцы их разместят.",ok:"Спасибо! Подписка оформлена.",
+tk:["Размещение всего 4990 сум","Напрямую с продавцом","Выбирайте. Общайтесь. Договаривайтесь.","Продайте свою одежду"],
+nav:["Главная","Объявления","Подать","Категории","Профиль"],
+w:[["Простое объявление","Добавьте фото, цену и телефон, и объявление готово"],["Прямая связь","Общайтесь с продавцом и договаривайтесь"],["Проверенные объявления","Объявление появится после проверки оплаты"],["Удобная оплата","Размещение всего 4990 сум, оплата на карту"]],
+c:{shirt:"Рубашки",tee:"Футболки",shoes:"Кроссовки",watch:"Часы",pants:"Брюки",acc:"Аксессуары"},
+m1t:"Новое объявление",photo:"Фото",name:"Название",section:"Раздел",price:"Цена (сум)",desc:"Описание",yname:"Ваше имя",phone:"Ваш телефон",cancel:"Отмена",next:"Продолжить",
+m2t:"Данные магазина",m2d:"Если у вас есть магазин одежды, заполните данные. Если только покупаете, пропустите.",simg:"Фото магазина",sname:"Название магазина",addr:"Адрес",email:"Email",skip:"Пропустить",save:"Сохранить",
+m3t:"Оплата",pm:"Выберите способ оплаты",pmcard:"Перевод на карту",pmsub:"Переведите деньги на карту",amt:"Стоимость размещения",cardno:"Номер карты",holder:"Владелец карты",copy:"Скопировать номер",copied:"Номер карты скопирован",
+pnote:"Переведите деньги на эту карту и загрузите фото чека. После проверки оплаты объявление появится на сайте.",rc:"Фото чека",back:"Назад",send:"Отправить",
+dt:"Объявление отправлено",dd:"Оно появится на сайте после проверки оплаты.",tgb:"Отправить в Telegram",close:"Закрыть",myads:"Мои объявления",st:"На проверке",noads:"Вы ещё не отправляли объявлений.",call:"Позвонить продавцу",
+lgt:"Вход в профиль",lgd:"Выберите аккаунт для входа.",gb:"Продолжить через Google",fbb:"Продолжить через Facebook",lgoff:"Вход пока не подключён: в config.js нужны ключи Firebase.",lgerr:"Не удалось войти. Попробуйте позже.",out:"Выйти",needlogin:"Чтобы подать объявление, сначала войдите в профиль.",sa:"Одобрено",sr:"Отклонено",tt:"Условия",tl:["Стоимость размещения: "+PRICE+" сум.","Оплата переводом на карту, нужно загрузить фото чека.","Объявление появится после проверки оплаты.","Цена одежды и доставка согласуются с продавцом."]}};
+const G={shirt:["#3a4bff","#7b3aff"],tee:["#ff5a1f","#ff2f6d"],shoes:["#0a1220","#243066"],watch:["#0a1220","#3a4bff"],pants:["#14a86a","#0b6a8a"],acc:["#ff2f6d","#7b3aff"]};
+const IC={home:"M3 11l9-8 9 8v10H3z",shop:"M4 9l1-5h14l1 5M4 9v11h16V9M4 9c0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0 0 2 4 2 4 0",plus:"M12 5v14M5 12h14",grid:"M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",user:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 4-6 8-6s8 2 8 6",chk:"M9 12l2 2 4-4M12 21a9 9 0 100-18 9 9 0 000 18",card:"M3 6h18v12H3zM3 10h18"};
+const svg=(p,x="")=>`<svg class="i" viewBox="0 0 24 24" ${x}><path d="${p}"/></svg>`;
+const sv=d=>`<svg viewBox="0 0 120 120"><path d="${d}" fill="rgba(255,255,255,.93)" stroke="#0b1030" stroke-opacity=".35" stroke-width="3" stroke-linejoin="round"/></svg>`;
+const PIC={shirt:sv("M40 14L20 26 8 52l18 8 6-10v58h56V50l6 10 18-8-12-26L80 14c-4 10-36 10-40 0z"),tee:sv("M42 14L18 26l6 22 14-6v62h44V42l14 6 6-22L78 14c-4 8-32 8-36 0z"),shoes:sv("M8 80c0-18 18-24 30-28l12 12c8 2 18-2 26-6 18 2 36 10 36 28v10H8z"),watch:`<svg viewBox="0 0 120 120"><rect x="44" y="6" width="32" height="108" rx="12" fill="rgba(255,255,255,.55)"/><circle cx="60" cy="60" r="34" fill="rgba(255,255,255,.93)" stroke="#0b1030" stroke-opacity=".35" stroke-width="4"/><path d="M60 60V40M60 60l14 8" stroke="#0b1030" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/></svg>`,pants:sv("M34 12h52l8 96H66L60 50l-6 58H26z"),acc:sv("M20 72c0-26 18-42 42-42s40 16 40 42zM12 76h98c0 8-12 12-32 12H44c-20 0-32-4-32-12z")};
+let fb=null,unsub=null,user=null,L="uz",cat=null,favs=new Set(),ads=[],dr={shop:{}};
+const P=[];
+const $=s=>document.querySelector(s),t=k=>D[L][k];
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=n=>Number(n).toLocaleString("ru-RU").replace(/\u00a0/g," ")+" "+t("cur");
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove("on"),1900)}
+function renderP(){const q=$("#q").value.trim().toLowerCase();
+const list=P.map((p,k)=>({...p,k})).filter(p=>(!cat||p.cat==cat)&&p.name.toLowerCase().includes(q));
+$("#gr").innerHTML=list.length?list.map(p=>`<article class="pc"><div class="tile">${p.img?`<img class="ph" src="${esc(p.img)}" alt="">`:""}<button class="hb ${favs.has(p.k)?"on":""}" data-f="${p.k}" aria-label="Like">${svg("M12 20s-8-5-8-11a4.5 4.5 0 018-2.7A4.5 4.5 0 0120 9c0 6-8 11-8 11z")}</button></div><div class="pi"><b>${esc(p.name)}</b><div class="pr">${fmt(p.price)}</div><small>${esc(p.yname)}</small><a class="add" href="tel:${esc(p.phone)}">${t("call")}</a></div></article>`).join(""):`<p class="empty">${t("none")}</p>`}
+function render(){document.documentElement.lang=L;
+document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
+$("#q").placeholder=t("search");
+$("#tk").innerHTML=[...t("tk"),...t("tk"),...t("tk"),...t("tk")].map(s=>`<span>${s}</span>`).join("");
+$("#ct").innerHTML=Object.keys(G).map(k=>`<button class="cat" data-c="${k}" style="background:linear-gradient(135deg,${G[k][0]},${G[k][1]})">${["a","b","c","d"].map(p=>`<span class="cn ${p}">${PIC[k]}</span>`).join("")}<span>${t("c")[k]}</span></button>`).join("");
+$("#wy").innerHTML=t("w").map((w,k)=>`<div class="wc"><div class="ic">${svg(IC[["plus","user","chk","card"][k]])}</div><b>${w[0]}</b><span>${w[1]}</span></div>`).join("");
+$("#nv").innerHTML=["home","shop","plus","grid","user"].map((k,j)=>j==2?`<button data-n="2" class="pl"><span class="pp">${svg(IC.plus)}</span>${t("nav")[2]}</button>`:`<button data-n="${j}" class="${j==0?"on":""}">${svg(IC[k])}${t("nav")[j]}</button>`).join("");
+renderP()}
+const fld=(l,n,x="")=>`<label class="fd">${t(l)}<input name="${n}" ${x}></label>`;
+const file=(l,n,req="")=>`<label class="fd">${t(l)}<input type="file" accept="image/*" name="${n}" ${req}><img class="fp" alt=""></label>`;
+const bar=n=>`<div class="st">${[1,2,3].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</div>`;
+function V(s){
+if(s==1)return bar(1)+`<h3>${t("m1t")}</h3><p></p><form data-s="1">${file("photo","img")}${fld("name","name","required")}<label class="fd">${t("section")}<select name="cat" required>${Object.keys(G).map(k=>`<option value="${k}">${t("c")[k]}</option>`).join("")}</select></label>${fld("price","price",'type="number" min="0" required')}<label class="fd">${t("desc")}<textarea name="desc"></textarea></label>${fld("yname","yname","required")}${fld("phone","phone",'type="tel" placeholder="+998" required')}<div class="rw"><button type="button" class="b2" data-x>${t("cancel")}</button><button class="b1">${t("next")}</button></div></form>`;
+if(s==2)return bar(2)+`<h3>${t("m2t")}</h3><p>${t("m2d")}</p><form data-s="2">${file("simg","simg")}${fld("sname","sname")}${fld("addr","addr")}${fld("email","email",'type="email"')}<div class="rw"><button type="button" class="b2" data-skip>${t("skip")}</button><button class="b1">${t("save")}</button></div></form>`;
+if(s==3)return bar(3)+`<h3>${t("m3t")}</h3><p>${t("pm")}</p><div class="pm"><div class="ic">${svg(IC.card)}</div><div><b>${t("pmcard")}</b><br><small>${t("pmsub")}</small></div></div><div class="am"><span>${t("amt")}</span><span>${fmt(PRICE)}</span></div><div class="cd"><span>${t("cardno")}</span><b>${CARD}</b><span>${t("holder")}: ${HOLDER}</span><button type="button" data-copy>${t("copy")}</button></div><p>${t("pnote")}</p><form data-s="3">${file("rc","rc","required")}<div class="rw"><button type="button" class="b2" data-back>${t("back")}</button><button class="b1">${t("send")}</button></div></form>`;
+const msg=`${dr.name} | ${t("c")[dr.cat]} | ${fmt(dr.price)}\n${dr.yname}, ${dr.phone}\n${fmt(PRICE)}`;
+return `<div class="done"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="40"/><path d="M27 47l12 12 25-28"/></svg><h3>${t("dt")}</h3><p>${t("dd")}</p>${TG?`<a class="tg" target="_blank" rel="noopener" href="https://t.me/${TG}?text=${encodeURIComponent(msg)}">${t("tgb")}</a>`:""}<div class="rw" style="width:100%"><button class="b2" data-x>${t("close")}</button></div></div>`}
+const ld=u=>new Promise((r,j)=>{const e=document.createElement("script");e.src=u;e.onload=r;e.onerror=j;document.head.appendChild(e)});
+const adsHtml=()=>ads.length?ads.map(a=>`<div class="ma">${a.img?`<img src="${esc(a.img)}" alt="">`:""}<div><b>${esc(a.name)}</b><br><small>${fmt(a.price)}</small></div><em>${t(a.status=="approved"?"sa":a.status=="rejected"?"sr":"st")}</em></div>`).join(""):`<p>${t("noads")}</p>`;
+function profile(){if(user)return sheet(user.name,`<div class="me"><i>${esc(user.name.charAt(0))}</i><div><b>${esc(user.name)}</b><br><small>${user.via}</small></div></div><h4>${t("myads")}</h4>${adsHtml()}<button class="b2" style="width:100%;padding:12px;border-radius:14px;font-weight:700;margin-top:6px" data-out>${t("out")}</button>`);
+sheet(t("lgt"),`<p>${t("lgd")}</p><button class="lb" data-gl><b style="background:#ea4335">G</b>${t("gb")}</button><button class="lb" data-fb><b style="background:#1877f2">f</b>${t("fbb")}</button>${LIVE?"":`<p class="note">${t("lgoff")}</p>`}<h4>${t("myads")}</h4>${adsHtml()}`)}
+const LIVE=!!(CFG.firebase&&CFG.firebase.apiKey);
+const su=u=>{user=u?{uid:u.uid,name:u.displayName||u.email||"User",email:u.email,via:(u.providerData[0]||{}).providerId=="facebook.com"?"Facebook":"Google"}:null};
+function watchMine(){if(unsub){unsub();unsub=null}if(!user){ads=[];return}unsub=fb.db.collection("ads").where("uid","==",user.uid).onSnapshot(q=>{ads=q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>((b.created||{}).seconds||0)-((a.created||{}).seconds||0))})}
+async function initFB(){if(!LIVE)return;for(const f of["app","auth","firestore"])await ld(`https://www.gstatic.com/firebasejs/10.12.2/firebase-${f}-compat.js`);
+firebase.initializeApp(CFG.firebase);fb={auth:firebase.auth(),db:firebase.firestore()};
+fb.auth.onAuthStateChanged(u=>{su(u);watchMine()});
+fb.db.collection("ads").where("status","==","approved").onSnapshot(q=>{P.length=0;q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>((b.created||{}).seconds||0)-((a.created||{}).seconds||0)).forEach(x=>P.push(x));renderP()})}
+async function loginG(){if(!LIVE)return toast(t("lgoff"));try{su((await fb.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())).user);watchMine();profile()}catch(_){toast(t("lgerr"))}}
+async function loginF(){if(!LIVE)return toast(t("lgoff"));try{su((await fb.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())).user);watchMine();profile()}catch(_){toast(t("lgerr"))}}
+const shrink=(f,m)=>new Promise((r,j)=>{const i=new Image();i.onload=()=>{const k=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.7))};i.onerror=j;i.src=URL.createObjectURL(f)});
+async function sendAd(){if(!LIVE){ads.unshift({...dr});return}
+const img=dr.imgF?await shrink(dr.imgF,900):"",simg=dr.simgF?await shrink(dr.simgF,500):"",rc=await shrink(dr.rcF,1000),ref=fb.db.collection("ads").doc();
+await ref.set({name:dr.name,cat:dr.cat,price:+dr.price,desc:dr.desc||"",yname:dr.yname,phone:dr.phone,img,shop:{...dr.shop,img:simg},uid:user.uid,uname:user.name,status:"pending",created:firebase.firestore.FieldValue.serverTimestamp()});
+await fb.db.collection("receipts").doc(ref.id).set({uid:user.uid,img:rc})}
+function post(){if(LIVE&&!user){profile();toast(t("needlogin"));return}dr={shop:{}};openM(1)}
+function openM(s){$("#md").hidden=false;$("#mb").innerHTML=V(s);$("#mb").scrollTop=0}
+function sheet(h,body){$("#md").hidden=false;$("#mb").innerHTML=`<h3>${h}</h3><p></p>${body}<div class="rw"><button class="b2" data-x>${t("close")}</button></div>`}
+document.addEventListener("click",e=>{if(e.target.id=="md"){$("#md").hidden=true;return}
+const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+if(d.l){L=d.l;document.querySelectorAll("#lg button").forEach(x=>x.classList.toggle("on",x==b));render()}
+else if("post" in d){post()}
+else if("x" in d)$("#md").hidden=true;
+else if("skip" in d)openM(3);else if("back" in d)openM(2);
+else if("copy" in d){try{navigator.clipboard.writeText(CARD.replace(/ /g,"")).then(()=>toast(t("copied")),()=>toast(CARD))}catch(_){toast(CARD)}}
+else if("prof" in d)profile();else if("gl" in d)loginG();else if("fb" in d)loginF();else if("out" in d){if(fb)fb.auth.signOut();user=null;ads=[];profile()}
+else if("terms" in d)sheet(t("tt"),`<ul>${t("tl").map(x=>`<li>${x}</li>`).join("")}</ul>`);
+else if(d.f){const k=+d.f;favs.has(k)?favs.delete(k):favs.add(k);b.classList.toggle("on");const f=$("#fc");f.textContent=favs.size;f.style.display=favs.size?"grid":"none"}
+else if(d.c){cat=cat==d.c?null:d.c;renderP();$("#shop").scrollIntoView()}
+else if(d.n){const n=+d.n;if(n==0)scrollTo({top:0});if(n==1){cat=null;renderP();$("#shop").scrollIntoView()}if(n==2){post()}if(n==3)$("#cats").scrollIntoView();if(n==4)profile()}
+else if(b.id=="th"){const r=document.documentElement,cur=r.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");r.dataset.theme=cur=="dark"?"light":"dark"}
+else if(d.sw){document.querySelector(".hero").style.setProperty("--shirt",d.sw);document.querySelectorAll("#sw button").forEach(x=>x.classList.toggle("on",x==b))}});
+document.addEventListener("change",e=>{const i=e.target;if(i.type!="file"||!i.files[0])return;const u=URL.createObjectURL(i.files[0]);dr[i.name]=u;dr[i.name+"F"]=i.files[0];const im=i.parentNode.querySelector(".fp");im.src=u;im.style.display="block"});
+document.addEventListener("submit",e=>{e.preventDefault();const f=e.target,s=f.dataset.s;
+if(f.id=="nf"){f.reset();toast(t("ok"));return}
+const v=Object.fromEntries(new FormData(f));
+if(s=="1"){Object.assign(dr,{name:v.name,cat:v.cat,price:v.price,desc:v.desc,yname:v.yname,phone:v.phone});openM(2)}
+if(s=="2"){dr.shop={name:v.sname,addr:v.addr,email:v.email};openM(3)}
+if(s=="3"){const bt=f.querySelector(".b1");bt.disabled=true;sendAd().then(()=>openM(4)).catch(()=>{bt.disabled=false;toast(t("lgerr"))})}});
+$("#q").addEventListener("input",()=>{cat=null;renderP()});
+$("#sw").insertAdjacentHTML("beforeend",["#ffffff","#8fb4f0","#1c2a63","#ff5a1f"].map((c,i)=>`<button data-sw="${c}" class="${i==0?"on":""}" style="background:${c}" aria-label="${c}"></button>`).join(""));
+render();initFB().catch(()=>toast(t("lgerr")));
+</script>
+</body>
+</html>
